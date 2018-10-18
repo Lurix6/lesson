@@ -1,21 +1,22 @@
-import React, {Component as ReactComponent} from 'react';
+import React, {Component as ReactComponent} from 'react'
 
-export default (OriginComponent) => class WrapperComponent extends ReactComponent {
+export default (OriginalComponent) => class WrappedComponent extends ReactComponent {
+    state = {
+        isOpen: false
+    }
 
-		state = {
-			isOpen: false
-		}
+    render() {
+        return <OriginalComponent {...this.props} {...this.state} toggleOpen = {this.toggleOpen} ref = {this.getRef}/>
+    }
 
-		toggleOpen = () => {
-			this.setState({
-				isOpen: !this.state.isOpen
+    toggleOpen = (ev) => {
+        ev && ev.preventDefault && ev.preventDefault()
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
 
-		})
-}	
-
-
-		render(){
-
-		return<OriginComponent {...this.props} {...this.state}  toggleOpen = {this.toggleOpen} />
-	}
+    getRef = ref => {
+    	console.log('---',ref); 
+    }
 }
