@@ -2,17 +2,28 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArticleList from './ArticleList'
 import ArticlesChart from './ArticlesChart'
+import UserForm from './UserForm'
+import Select from 'react-select'
+import Filters from './Filters'
+import 'react-select/dist/react-select.css'
+import Counter from './Counter'
+
 
 class App extends Component {
     static propTypes = {
-    	articles : PropTypes.array.isRequired 
+
     };
 
     render() {
+        const {articles} = this.props
+
         return (
             <div>
-                <ArticleList articles = {this.props.articles} />
-                <ArticlesChart articles = {this.props.articles} />
+                <Counter />
+                <UserForm />
+                <Filters articles = {articles} />
+                <ArticleList articles = {articles} defaultOpenId = {articles[0].id}/>
+                <ArticlesChart articles = {articles} />
             </div>
         )
     }

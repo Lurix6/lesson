@@ -16,7 +16,7 @@ export default (OriginalComponent) => class WrappedComponent extends ReactCompon
         })
     }
 
-    getRef = ref => {
-    	console.log('---',ref); 
+    getRef = (ref) => {
+        //   console.log('---', ref)
     }
 }
